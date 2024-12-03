@@ -1,0 +1,32 @@
+﻿<Window x:Class="ServerGUI.QuanLyTaiKhoan.QuanLySoDu"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ServerGUI.QuanLyTaiKhoan"
+        mc:Ignorable="d"
+        Title="Quản lý số dư" SizeToContent="WidthAndHeight"
+        DataContext="{Binding RelativeSource={RelativeSource Self}}">
+    <Grid Height="185" Width="316">
+        <Label Content="Tên đăng nhập" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
+        <TextBox Text="{Binding taiKhoan.TenDangNhap, Mode=OneWay}" x:Name="textBox_TenDangNhap" HorizontalAlignment="Left" Margin="144,14,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsReadOnly="True"/>
+        <Label Content="Số dư" HorizontalAlignment="Left" Margin="10,43,0,0" VerticalAlignment="Top"/>
+        <TextBox Text="{Binding taiKhoan.SoDu, Mode=OneWay, StringFormat='{}{0:N0}'}" x:Name="textBox_SoDu" HorizontalAlignment="Left" Margin="144,47,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsReadOnly="True" TextAlignment="Right" FontWeight="Bold"/>
+        <Label Content="Thay đổi" HorizontalAlignment="Left" Margin="10,74,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="textBox_ThayDoi" HorizontalAlignment="Left" Margin="144,78,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TextAlignment="Right" FontWeight="Bold" TextChanged="textBox_ThayDoi_TextChanged"/>
+        <Button x:Name="button_Withdraw" HorizontalAlignment="Left" Height="26" Margin="54,111,0,0" VerticalAlignment="Top" Width="97" BorderBrush="#FF707070" Click="button_Withdraw_Click">
+            <StackPanel Orientation="Horizontal">
+                <Image Source="resources/minus.png" Width="29"/>
+                <Label Content="Rút tiền" Padding="5,0,0,0" VerticalContentAlignment="Center" />
+            </StackPanel>
+        </Button>
+        <Button x:Name="button_Deposit" HorizontalAlignment="Left" Height="26" Margin="177,111,0,0" VerticalAlignment="Top" Width="97" BorderBrush="#FF707070" Click="button_Deposit_Click">
+            <StackPanel Orientation="Horizontal">
+                <Image Source="resources/plus.png" Width="29"/>
+                <Label Content="Nạp tiền" Padding="5,0,0,0" VerticalContentAlignment="Center" />
+            </StackPanel>
+        </Button>
+        <Button x:Name="button_OK" Content="OK" HorizontalAlignment="Center" Margin="0,155,0,0" VerticalAlignment="Top" Width="70" Click="button_OK_Click"/>
+
+    </Grid>
+</Window>

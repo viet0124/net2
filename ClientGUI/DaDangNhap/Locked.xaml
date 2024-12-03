@@ -1,0 +1,19 @@
+﻿<Window x:Class="ClientGUI.DaDangNhap.Locked"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ClientGUI"
+        mc:Ignorable="d"
+        Title="Khoá máy" SizeToContent="WidthAndHeight" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+    <Grid Height="108" Width="296">
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Label Content="Mật khẩu" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Padding="0,0,0,0"/>
+        <PasswordBox PasswordChanged="passwordBox_MatKhau_PasswordChanged" x:Name="passwordBox_MatKhau" Margin="10,31,10,0" VerticalAlignment="Top" PasswordChar="●"/>
+        <Button x:Name="button_MoKhoa" Content="Mở khoá" HorizontalAlignment="Left" Margin="10,67,0,0" VerticalAlignment="Top" Width="72" Click="button_MoKhoa_Click" />
+
+
+    </Grid>
+</Window>

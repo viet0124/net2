@@ -1,0 +1,66 @@
+﻿<Window x:Class="ServerGUI.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ServerGUI"
+        mc:Ignorable="d"
+        Title="MainWindow" WindowState="Maximized" SizeToContent="WidthAndHeight" WindowStyle="SingleBorderWindow"
+        DataContext="{Binding RelativeSource={RelativeSource Self}}">
+    <TabControl TabStripPlacement="Left" Width="1280" Height="720">
+        <TabItem Header="Quản lý tài khoản" FontSize="20">
+            <Grid Background="#FFE5E5E5">
+                <Button x:Name="button_ThemTaiKhoan" Content="Thêm" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="67" Width="67" Click="button_ThemTaiKhoan_Click"/>
+                <DataGrid x:Name="datagrid_TaiKhoan" Margin="10,0,10,10" CanUserSortColumns="True" HeadersVisibility="Column" SelectionMode="Single" Loaded="datagrid_TaiKhoan_Loaded" AutoGenerateColumns="False" Height="595" VerticalAlignment="Bottom" IsReadOnly="True" SelectionChanged="datagrid_TaiKhoan_SelectionChanged" ItemsSource="{Binding TableTaiKhoanDataSource, Mode=OneWay}" CanUserResizeRows="False">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Tên đăng nhập" Binding="{Binding TenDangNhap}" Width="*"/>
+                        <DataGridTextColumn Header="Họ tên" Binding="{Binding HoTen}" Width="*"/>
+                        <DataGridTextColumn Header="Số dư" Binding="{Binding SoDu, StringFormat='{}{0:N0}'}" Width="*"/>
+                        <DataGridTextColumn Header="Thời gian còn lại" Binding="{Binding ThoiGianConLai_Rounded}" Width="*"/>
+                    </DataGrid.Columns>
+                    <DataGrid.ContextMenu>
+                        <ContextMenu>
+                            <MenuItem x:Name="menuItem_TaiKhoan_NapTien" Header="Nạp tiền" Click="menuItem_TaiKhoan_NapTien_Click"/>
+                            <MenuItem x:Name="menuItem_TaiKhoan_DoiMatKhau" Header="Đổi mật khẩu" Click="menuItem_TaiKhoan_DoiMatKhau_Click"/>
+                            <MenuItem x:Name="menuItem_TaiKhoan_Xoa" Header="Xoá" Click="menuItem_TaiKhoan_Xoa_Click"/>
+                        </ContextMenu>
+                    </DataGrid.ContextMenu>
+                </DataGrid>
+                <Button x:Name="button_DoiMatKhau" Content="Đổi mật khẩu" HorizontalAlignment="Left" Margin="105,10,0,0" VerticalAlignment="Top" Height="67" Width="147" Click="button_DoiMatKhau_Click" IsEnabled="False"/>
+                <Button x:Name="button_XoaTaiKhoan" Content="Xoá" HorizontalAlignment="Left" Margin="284,10,0,0" VerticalAlignment="Top" Height="67" Width="67" Click="button_XoaTaiKhoan_Click" IsEnabled="False"/>
+                <Button x:Name="button_NapTien" Content="Nạp tiền" HorizontalAlignment="Left" Margin="389,10,0,0" VerticalAlignment="Top" Height="67" Width="87" Click="button_NapTien_Click" IsEnabled="False"/>
+                <Button x:Name="button_TaiKhoan_Refresh" Content="Refresh" HorizontalAlignment="Left" Margin="944,44,0,0" VerticalAlignment="Top" Click="button_TaiKhoan_Refresh_Click"/>
+            </Grid>
+        </TabItem>
+        <TabItem Header="Quản lý máy" FontSize="20">
+            <Grid Background="#FFE5E5E5">
+                <DataGrid  x:Name="datagrid_May" Margin="10,0,10,10" VerticalAlignment="Bottom" Height="573" Loaded="datagrid_May_Loaded" AutoGenerateColumns="False" IsReadOnly="True" SelectionChanged="datagrid_May_SelectionChanged" ItemsSource="{Binding TableMayDataSource, Mode=OneWay}" SelectionUnit="FullRow" SelectionMode="Single" CanUserResizeRows="False" CanUserDeleteRows="False" CanUserAddRows="False">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="ID" Binding="{Binding Id}" Width="1*"/>
+                        <DataGridTextColumn Header="Tên máy" Binding="{Binding TenMay}" Width="2*"/>
+                        <DataGridTextColumn Header="Trạng thái" Binding="{Binding IdTinhTrangNavigation.TenTinhTrang}" Width="2.7*" />
+                        <DataGridTextColumn Header="IP" Binding="{Binding DiaChiIpv4}" Width="2*"/>
+                        <DataGridTextColumn Header="Loại máy" Binding="{Binding IdLoaiMayNavigation.TenLoaiMay}" Width="2.5*"/>
+                        <DataGridTextColumn Header="Tài khoản đã đăng nhập" Binding="{Binding DangHoatDong.IdTaiKhoanNavigation.TenDangNhap, TargetNullValue=''}" Width="3*"/>
+                        <DataGridTextColumn Header="Thời gian còn lại" Binding="{Binding DangHoatDong.IdTaiKhoanNavigation.ThoiGianConLai_Rounded, TargetNullValue=''}" Width="*"/>
+                    </DataGrid.Columns>
+                    <DataGrid.ContextMenu>
+                        <ContextMenu x:Name="contextMenu_May">
+                            <MenuItem x:Name="menuItem_May_KhoiDongMay" Header="Khởi động" Click="menuItem_May_KhoiDongMay_Click" />
+                            <MenuItem x:Name="menuItem_May_TatMay" Header="Tắt máy" Click="menuItem_May_TatMay_Click" />
+                            <MenuItem x:Name="menuItem_May_NapTien" Header="Nạp tiền" Click="menuItem_May_NapTien_Click" />
+                            <MenuItem x:Name="menuItem_May_Xoa" Header="Xoá" Click="menuItem_May_Xoa_Click" />
+                        </ContextMenu>
+                    </DataGrid.ContextMenu>
+                </DataGrid>
+                <Button x:Name="button_KhoiDongMay" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="109" Width="109" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Click="button_KhoiDongMay_Click" IsEnabled="False">
+                    <TextBlock TextWrapping="WrapWithOverflow" TextAlignment="Center">Khởi động máy</TextBlock> </Button>
+                <Button x:Name="button_TatMay" Content="Tắt máy" HorizontalAlignment="Left" Margin="142,10,0,0" VerticalAlignment="Top" Height="109" Width="109" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Click="button_TatMay_Click" IsEnabled="False"/>
+                <Button x:Name="button_NapTien1" Content="Nạp tiền" HorizontalAlignment="Left" Margin="273,10,0,0" VerticalAlignment="Top" Height="109" Width="109" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Click="button_NapTien1_Click" IsEnabled="False"/>
+                <Button x:Name="button_May_Refresh" Content="Refresh" HorizontalAlignment="Left" Margin="1026,95,0,0" VerticalAlignment="Top" Click="button_May_Refresh_Click"/>
+                <Button x:Name="button_May_Them" Content="Thêm" HorizontalAlignment="Left" Margin="422,10,0,0" VerticalAlignment="Top" Height="109" Width="130" Click="button_May_Them_Click"/>
+                <Button x:Name="button_May_Xoa" Content="Xoá" HorizontalAlignment="Left" Margin="582,10,0,0" VerticalAlignment="Top" Height="109" Width="130" Click="button_May_Xoa_Click" IsEnabled="False"/>
+            </Grid>
+        </TabItem>
+    </TabControl>
+</Window>

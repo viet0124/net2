@@ -1,0 +1,24 @@
+﻿<Window x:Class="ClientGUI.ChuaDangNhap.FormDangNhap"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ClientGUI"
+        mc:Ignorable="d"
+        Title="Đăng nhập" SizeToContent="WidthAndHeight" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+    <Grid Height="201" Width="296">
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Label Content="Tên đăng nhập" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Padding="0,0,0,0"/>
+        <TextBox x:Name="textBox_TenDangNhap" Margin="10,31,10,0" TextWrapping="Wrap" VerticalAlignment="Top" CharacterCasing="Upper"/>
+        <Label Content="Mật khẩu" HorizontalAlignment="Left" Margin="10,64,0,0" VerticalAlignment="Top" Padding="0,0,0,0"/>
+        <PasswordBox PasswordChanged="passwordBox_MatKhau_PasswordChanged" x:Name="passwordBox_MatKhau"  Margin="10,85,10,0" VerticalAlignment="Top" PasswordChar="●"/>
+        <Button x:Name="button_DangNhap" Content="Đăng nhập" HorizontalAlignment="Left" Margin="10,128,0,0" VerticalAlignment="Top" Width="72" Click="button_DangNhap_Click" />
+        <Button x:Name="button_CheDoKhach" Content="Chế độ khách" HorizontalAlignment="Left" Margin="201,128,0,0" VerticalAlignment="Top" Width="85" Click="button_CheDoKhach_Click" />
+        <Label Content="hoặc" HorizontalAlignment="Left" Margin="10,153,0,0" VerticalAlignment="Top" Padding="0,0,0,0" FontSize="10"/>
+        <Button x:Name="button_TaoTaiKhoan" Content="Tạo tài khoản mới" HorizontalAlignment="Left" Margin="10,171,0,0" VerticalAlignment="Top" Width="102" Click="TaoTaiKhoan_Click" />
+
+
+    </Grid>
+</Window>
